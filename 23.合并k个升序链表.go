@@ -16,21 +16,21 @@ import "container/heap"
  * }
  */
 
-type nodePriorityQueue []*ListNode
+type minHeap23 []*ListNode
 
-func (hp nodePriorityQueue) Len() int {
+func (hp minHeap23) Len() int {
 	return len(hp)
 }
-func (hp nodePriorityQueue) Swap(i, j int) {
+func (hp minHeap23) Swap(i, j int) {
 	hp[i], hp[j] = hp[j], hp[i]
 }
-func (hp nodePriorityQueue) Less(i, j int) bool {
+func (hp minHeap23) Less(i, j int) bool {
 	return hp[i].Val < hp[j].Val
 }
-func (hp *nodePriorityQueue) Push(x interface{}) {
+func (hp *minHeap23) Push(x interface{}) {
 	*hp = append(*hp, x.(*ListNode))
 }
-func (hp *nodePriorityQueue) Pop() interface{} {
+func (hp *minHeap23) Pop() interface{} {
 	old := *hp
 	n := len(old)
 	x := old[n-1]
@@ -43,30 +43,31 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		return nil
 	}
 
-	queue := nodePriorityQueue{}
-	for _, list := range lists {
-		for list != nil {
-			next := list.Next
-			list.Next = nil
-			queue.Push(list)
-			list = next
+	hp := make(minHeap23, 0, len(lists))
+
+	// 用小顶堆维护k个链表的头节点的大小关系
+	for _, node := range lists {
+		if node != nil {
+			heap.Push(&hp, node)
 		}
 	}
 
-	heap.Init(&queue)
-
-	var head, cur *ListNode
-
-	for queue.Len() > 0 {
-		next := heap.Pop(&queue).(*ListNode)
+	var head, tail *ListNode
+	for len(hp) > 0 {
+		min := heap.Pop(&hp).(*ListNode)
 		if head == nil {
-			head = next
-			cur = next
+			head = min
+			tail = min
 		} else {
-			cur.Next = next
-			cur = next
+			tail.Next = min
+			tail = min
 		}
 
+		next := min.Next
+		min.Next = nil
+		if next != nil {
+			heap.Push(&hp, next)
+		}
 	}
 
 	return head
