@@ -3,7 +3,7 @@
  *
  * [146] LRU 缓存
  */
-package main
+package leetcode
 
 import "container/list"
 
