@@ -3,7 +3,7 @@
  *
  * [94] 二叉树的中序遍历
  */
-package main
+package leetcode
 
 type TreeNode struct {
 	Val   int

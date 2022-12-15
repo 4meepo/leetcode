@@ -3,7 +3,7 @@
  *
  * [4] 寻找两个正序数组的中位数
  */
-package main
+package leetcode
 
 // @lc code=start
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {

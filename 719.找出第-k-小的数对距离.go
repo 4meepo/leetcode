@@ -3,7 +3,7 @@
  *
  * [719] 找出第 K 小的数对距离
  */
-package main
+package leetcode
 
 import (
 	"container/heap"

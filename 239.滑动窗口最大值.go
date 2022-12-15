@@ -3,7 +3,7 @@
  *
  * [239] 滑动窗口最大值
  */
-package main
+package leetcode
 
 import "container/heap"
 

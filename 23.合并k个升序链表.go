@@ -3,7 +3,7 @@
  *
  * [23] 合并K个升序链表
  */
-package main
+package leetcode
 
 import "container/heap"
 

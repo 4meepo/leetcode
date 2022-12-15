@@ -4,7 +4,7 @@
  * [61] 旋转链表
  */
 
-package main
+package leetcode
 
 // @lc code=start
 /**

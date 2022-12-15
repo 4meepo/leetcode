@@ -3,7 +3,7 @@
  *
  * [206] 反转链表
  */
-package main
+package leetcode
 
 // @lc code=start
 /**

@@ -3,7 +3,7 @@
  *
  * [2] 两数相加
  */
-package main
+package leetcode
 
 type ListNode struct {
 	Val  int

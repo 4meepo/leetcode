@@ -3,7 +3,7 @@
  *
  * [300] 最长递增子序列
  */
-package main
+package leetcode
 
 // @lc code=start
 func lengthOfLIS(nums []int) int {

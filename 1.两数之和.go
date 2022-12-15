@@ -3,7 +3,7 @@
  *
  * [1] 两数之和
  */
-package main
+package leetcode
 
 // @lc code=start
 func twoSum(nums []int, target int) []int {

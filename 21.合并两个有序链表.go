@@ -3,7 +3,7 @@
  *
  * [21] 合并两个有序链表
  */
-package main
+package leetcode
 
 // @lc code=start
 /**
