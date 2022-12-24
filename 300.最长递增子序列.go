@@ -7,14 +7,15 @@ package leetcode
 
 // @lc code=start
 func lengthOfLIS(nums []int) int {
-	if len(nums) == 0 {
-		return 0
+	if len(nums) <= 1 {
+		return len(nums)
 	}
 
 	dp := make([]int, len(nums))
 
-	rtn := 1
-	for i, v := range nums {
+	var rtn = 0
+
+	for i := 0; i < len(nums); i++ {
 		if i == 0 {
 			dp[0] = 1
 			continue
@@ -22,13 +23,14 @@ func lengthOfLIS(nums []int) int {
 
 		max := 1
 		for j := 0; j < i; j++ {
-			if nums[j] < v {
+			if nums[j] < nums[i] {
 				if dp[j]+1 > max {
 					max = dp[j] + 1
 				}
 			}
 		}
 		dp[i] = max
+
 		if max > rtn {
 			rtn = max
 		}
