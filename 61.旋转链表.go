@@ -15,49 +15,36 @@ package leetcode
  * }
  */
 func rotateRight(head *ListNode, k int) *ListNode {
-	if k == 0 {
-		return head
-	}
 	if head == nil {
 		return nil
 	}
-	if head.Next == nil {
+	if k == 0 {
 		return head
-	}
-
-	// 计算链表长度
-	length := 0
-	{
-		_h := head
-		for _h != nil {
-			length++
-			_h = _h.Next
-		}
-	}
-
-	// 判断k是否大于链表长度
-	if k%length == 0 {
-		return head
-	}
-	if k > length {
-		k = k % length
 	}
 
 	slow, fast := head, head
 
+	length := 1
+
 	for fast.Next != nil {
 		fast = fast.Next
-		k--
-		if k < 0 {
-			slow = slow.Next
-		}
+		length++
 	}
 
-	rtn := slow.Next
+	k = k % length
+	if k == 0 {
+		return head
+	}
+
+	for i := 0; i < length-k-1; i++ {
+		slow = slow.Next
+	}
+
+	next := slow.Next
 	slow.Next = nil
 	fast.Next = head
 
-	return rtn
+	return next
 }
 
 // @lc code=end
