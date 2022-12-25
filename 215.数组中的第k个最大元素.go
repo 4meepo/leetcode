@@ -9,47 +9,47 @@ import "container/heap"
 
 // @lc code=start
 
-// maxHeap 大顶堆
-type maxHeap []int
+type maxheap []int
 
-func (h maxHeap) Len() int {
-	return len(h)
+func (m maxheap) Less(i, j int) bool {
+	return m[i] > m[j]
 }
-func (h maxHeap) Swap(i, j int) {
-	h[i], h[j] = h[j], h[i]
+
+func (m maxheap) Swap(i, j int) {
+	m[i], m[j] = m[j], m[i]
 }
-func (h maxHeap) Less(i, j int) bool {
-	return h[i] > h[j]
+func (m maxheap) Len() int {
+	return len(m)
 }
-func (h *maxHeap) Push(x interface{}) {
-	*h = append(*h, x.(int))
+
+func (m *maxheap) Push(x interface{}) {
+	*m = append(*m, x.(int))
 }
-func (h *maxHeap) Pop() interface{} {
-	old := *h
+
+func (m *maxheap) Pop() interface{} {
+	old := *m
 	n := len(old)
-	rtn := old[n-1]
-	*h = old[:n-1]
-	return rtn
+
+	x := old[n-1]
+	*m = old[:n-1]
+
+	return x
 }
 
 func findKthLargest(nums []int, k int) int {
+	hp := &maxheap{}
 
-	hp := make(maxHeap, len(nums))
+	for i := 0; i < len(nums); i++ {
+		hp.Push(nums[i])
+	}
+	heap.Init(hp)
 
-	for i, v := range nums {
-		hp[i] = v
+	var n int
+	for i := 0; i < k; i++ {
+		n = heap.Pop(hp).(int)
 	}
 
-	heap.Init(&hp)
-
-	var rtn *int
-	for k > 0 {
-		n := heap.Pop(&hp).(int)
-		rtn = &n
-		k--
-	}
-
-	return *rtn
+	return n
 }
 
 // @lc code=end
